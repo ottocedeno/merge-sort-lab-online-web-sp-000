@@ -12,16 +12,24 @@ function findMinAndRemoveSorted(array) {
   return min;
 }
 
+function findAndRemove(firstArray, secondArray) {
+  return firstArray[0] < secondArray[0]
+    ? firstArray.shift()
+    : secondArray.shift();
+}
+
 function merge(firstSubarray, secondSubarray) {
   let sorted = [];
   let currentMin;
 
   while (firstSubarray.length != 0 && secondSubarray.length != 0) {
-    if (firstSubarray[0] < secondSubarray[0]) {
-      currentMin = firstSubarray.shift();
-    } else {
-      currentMin = secondSubarray.shift();
-    }
+    // if (firstSubarray[0] < secondSubarray[0]) {
+    //   currentMin = firstSubarray.shift();
+    // } else {
+    //   currentMin = secondSubarray.shift();
+    // }
+
+    currentMin = findAndRemove(firstSubarray, secondSubarray);
     sorted.push(currentMin);
   }
   return sorted.concat(firstSubarray).concat(secondSubarray);
